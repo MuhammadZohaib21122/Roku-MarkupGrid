@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<component name="FirstScreen" extends="Group" initialFocus="exampleMarkupGrid">
+
+  <script type="text/brightscript" uri="FirstScreen.brs" />
+
+  <children>
+
+    <Poster width="1920" height="1080" uri="pkg:/images/background_overlay.png">
+    </Poster>
+
+
+    <MarkupGrid
+      id="exampleMarkupGrid"
+      translation="[ 150, 160 ]"
+      itemComponentName="MarkupGridItem"
+      numColumns="5"
+      numRows="3"
+      itemSize="[ 300, 236 ]"
+      itemSpacing="[ 40,40]"
+      vertFocusAnimationStyle="floatingfocus"
+      drawFocusFeedback="false" />
+
+
+        <Group id="ExitGroup" visible="false" translation="[0,0]">
+
+            <Poster id="exitBackground" width="1920" height="1080"
+                uri="pkg:/images/exit/main_overlay.png" />
+
+            <Poster id="settingOverlay" width="1920" height="1080"
+                uri="pkg:/images/exit/exit_dialog.png" />
+
+
+            <Button id="exitButton" focusable="true" iconUri="" text="" focusedIconUri=""
+                visible="true"
+                translation="[986, 669]"
+                maxWidth="253" minWidth="253" height="81"
+                focusFootprintBitmapUri="pkg:/images/exit/yes_UF.png"
+                focusBitmapUri="pkg:/images/exit/yes_F.png"
+                showFocusFootprint="true" />
+
+            <Button id="cancelExitButton" focusable="true" iconUri="" text="" focusedIconUri=""
+                visible="true"
+                translation="[680, 669]"
+                maxWidth="253" minWidth="253" height="81"
+                focusFootprintBitmapUri="pkg:/images/exit/no_UF.png"
+                focusBitmapUri="pkg:/images/exit/no_F.png"
+                showFocusFootprint="true" />
+
+        </Group>
+
+  </children>
+
+</component>

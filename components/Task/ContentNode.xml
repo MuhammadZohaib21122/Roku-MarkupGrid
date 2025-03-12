@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<component name="ItemData" extends="ContentNode">
+
+    <interface>
+
+        <field id="mediaId" type="string" />
+        <field id="videoTitle" type="string" />
+        <field id="imagePath" type="string" />
+        <field id="videoPath" type="string" />
+       
+        
+
+    </interface>
+
+</component>

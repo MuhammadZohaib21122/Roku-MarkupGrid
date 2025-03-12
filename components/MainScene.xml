@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="MainScene" extends="Scene">
+
+    <script type="text/brightscript" uri="MainScene.brs" />
+
+    <script type="text/brightscript" uri="UILogic/ShowFirstScreenLogic.brs" />
+     <script type="text/brightscript" uri="UILogic/ShowvideoScreenLogic.brs" />
+    <script type="text/brightscript" uri="UILogic/ScreenStack.brs" />
+
+
+    <customization suspendhandler="customSuspend" />
+    <customization resumehandler="customResume" />
+    <interface>
+
+        <field id="inputArgs" type="assocarray" />
+        <field id="launchArgs" type="assocarray" />
+        <field id="rowListData" type="node" />
+
+        <function name="CloseScreen" />
+        <function name="ShowFirstScreen" />
+        <function name="ShowvideoScreen" />
+
+        <field id="exitApp" type="boolean" alwaysNotify="true" />
+
+        
+
+
+    </interface>
+
+    <children>
+
+
+    </children>
+</component>
