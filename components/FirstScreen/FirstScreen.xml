@@ -4,14 +4,26 @@
 
   <script type="text/brightscript" uri="FirstScreen.brs" />
 
+  <interface>
+
+
+    <field id="item" type="node" alwaysNotify="true" />
+    <field id="exitApp" type="boolean" alwaysNotify="true" />
+
+
+  </interface>
+
   <children>
 
     <Poster width="1920" height="1080" uri="pkg:/images/background_overlay.png">
     </Poster>
 
+    <Video id="videoPlayer" visible="false" height="1080"
+      width="1920" translation="[0,0]" />
 
     <MarkupGrid
       id="exampleMarkupGrid"
+      visible="true"
       translation="[ 150, 160 ]"
       itemComponentName="MarkupGridItem"
       numColumns="5"
@@ -21,33 +33,43 @@
       vertFocusAnimationStyle="floatingfocus"
       drawFocusFeedback="false" />
 
+      <Button id="backbtn" focusable="true" iconUri="" text="" focusedIconUri=""
+        visible="true"
+        translation="[60, 70]"
+        maxWidth="80" minWidth="80" height="80"
+        focusFootprintBitmapUri="pkg:/images/backbtn_UF.png"
+        focusBitmapUri="pkg:/images/backbtn_F.png"
+        showFocusFootprint="true" />
 
-        <Group id="ExitGroup" visible="false" translation="[0,0]">
-
-            <Poster id="exitBackground" width="1920" height="1080"
-                uri="pkg:/images/exit/main_overlay.png" />
-
-            <Poster id="settingOverlay" width="1920" height="1080"
-                uri="pkg:/images/exit/exit_dialog.png" />
 
 
-            <Button id="exitButton" focusable="true" iconUri="" text="" focusedIconUri=""
-                visible="true"
-                translation="[986, 669]"
-                maxWidth="253" minWidth="253" height="81"
-                focusFootprintBitmapUri="pkg:/images/exit/yes_UF.png"
-                focusBitmapUri="pkg:/images/exit/yes_F.png"
-                showFocusFootprint="true" />
 
-            <Button id="cancelExitButton" focusable="true" iconUri="" text="" focusedIconUri=""
-                visible="true"
-                translation="[680, 669]"
-                maxWidth="253" minWidth="253" height="81"
-                focusFootprintBitmapUri="pkg:/images/exit/no_UF.png"
-                focusBitmapUri="pkg:/images/exit/no_F.png"
-                showFocusFootprint="true" />
+    <Group id="ExitGroup" visible="false" translation="[0,0]">
 
-        </Group>
+      <Poster id="exitBackground" width="1920" height="1080"
+        uri="pkg:/images/exit/main_overlay.png" />
+
+      <Poster id="settingOverlay" width="1920" height="1080"
+        uri="pkg:/images/exit/exit_dialog.png" />
+
+
+      <Button id="exitButton" focusable="true" iconUri="" text="" focusedIconUri=""
+        visible="true"
+        translation="[986, 669]"
+        maxWidth="253" minWidth="253" height="81"
+        focusFootprintBitmapUri="pkg:/images/exit/yes_UF.png"
+        focusBitmapUri="pkg:/images/exit/yes_F.png"
+        showFocusFootprint="true" />
+
+      <Button id="cancelExitButton" focusable="true" iconUri="" text="" focusedIconUri=""
+        visible="true"
+        translation="[680, 669]"
+        maxWidth="253" minWidth="253" height="81"
+        focusFootprintBitmapUri="pkg:/images/exit/no_UF.png"
+        focusBitmapUri="pkg:/images/exit/no_F.png"
+        showFocusFootprint="true" />
+
+    </Group>
 
   </children>
 
