@@ -8,8 +8,8 @@
         <field id="videoTitle" type="string" />
         <field id="imagePath" type="string" />
         <field id="videoPath" type="string" />
-       
-        
+        <field id="bgImagePath" type="string" />
+
 
     </interface>
 
