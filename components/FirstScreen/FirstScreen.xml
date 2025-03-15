@@ -7,7 +7,6 @@
   <interface>
 
 
-    <field id="item" type="node" alwaysNotify="true" />
     <field id="exitApp" type="boolean" alwaysNotify="true" />
 
 
@@ -15,14 +14,27 @@
 
   <children>
 
-    <Poster width="1920" height="1080" uri="pkg:/images/background_overlay.png">
+    <Poster  id = "background" width="1920" height="1080" uri="https://screensaverapps.b-cdn.net/VoD%20Apps%20-%20Collection/Fireplace%20Collection/BGImages/015.jpg">
     </Poster>
+
+    <Label
+      id="videoTitle"
+      height="44"
+      width="0"
+      color = ""
+      font="font:MediumBoldSystemFont"
+      text=" Life at Beach "
+      horizAlign="left"
+      vertAlign="center"
+      translation="[700,970]">
+      <Font role="font" uri="pkg:/components/Fonts/AcuminVariableConcept-SemiCondensedLight.ttf" size="50" />
+    </Label>
 
     <Video id="videoPlayer" visible="false" height="1080"
       width="1920" translation="[0,0]" />
 
     <MarkupGrid
-      id="exampleMarkupGrid"
+      id="videoMarkupGrid"
       visible="true"
       translation="[ 150, 160 ]"
       itemComponentName="MarkupGridItem"
@@ -33,15 +45,21 @@
       vertFocusAnimationStyle="floatingfocus"
       drawFocusFeedback="false" />
 
-      <Button id="backbtn" focusable="true" iconUri="" text="" focusedIconUri=""
-        visible="true"
-        translation="[60, 70]"
-        maxWidth="80" minWidth="80" height="80"
-        focusFootprintBitmapUri="pkg:/images/backbtn_UF.png"
-        focusBitmapUri="pkg:/images/backbtn_F.png"
-        showFocusFootprint="true" />
+    <Button id="backbtn" focusable="true" iconUri="" text="" focusedIconUri=""
+      visible="false"
+      translation="[600, 70]"
+      maxWidth="320" minWidth="320" height="88"
+      focusFootprintBitmapUri="pkg:/images/BackButtonunFocus.png"
+      focusBitmapUri="pkg:/images/BackButtonFocus.png"
+      showFocusFootprint="true" />
 
-
+    <Button id="homebtn" focusable="true" iconUri="" text="" focusedIconUri=""
+      visible="false"
+      translation="[950, 70]"
+      maxWidth="320" minWidth="320" height="80"
+      focusFootprintBitmapUri="pkg:/images/homebtnF.png"
+      focusBitmapUri="pkg:/images/homebtnUF.png"
+      showFocusFootprint="true" />
 
 
     <Group id="ExitGroup" visible="false" translation="[0,0]">
