@@ -25,6 +25,7 @@ sub getcontent()
         if item.DoesExist("videoTitle") then itemNode.videoTitle = item.videoTitle
         if item.DoesExist("imagePath") then itemNode.imagePath = item.imagePath
         if item.DoesExist("videoPath") then itemNode.videoPath = item.videoPath
+        if item.DoesExist("bgImagePath") then itemNode.bgImagePath = item.bgImagePath
       
         
         ' ?"Added Item: "; itemNode.title
@@ -32,6 +33,7 @@ sub getcontent()
         ?"Title            ."item.videoTitle
         ?"Image Path        ."item.imagePath
         ?"Video Path        ."item.videoPath
+        ?"bgImagePath       ."item.bgImagePath
 
       end if
     next
