@@ -1,6 +1,6 @@
 sub init()
   ' m.top.setFocus(true)
-
+  m.background = m.top.findNode("background")
   m.ExitGroup = m.top.FindNode("ExitGroup")
   m.exitAppButton = m.top.findNode("exitButton")
   m.cancelExitDialogeButton = m.top.findNode("cancelExitButton")
@@ -8,10 +8,15 @@ sub init()
   m.cancelExitDialogeButton.observeField("buttonSelected", "cancelExitDialoge")
 
   m.backbtn = m.top.findNode("backbtn")
-  m.backbtn.observeField("buttonSelected", "backbtn")
+  m.backbtn.observeField("buttonSelected", "onBackButtonSelected")
 
-  m.markupgrid = m.top.findNode("exampleMarkupGrid")
-  m.markupgrid.observeField("ItemSelected", "gotovideoscreen")
+  m.homebtn = m.top.findNode("homebtn")
+  m.homebtn.observeField("buttonSelected", "onHomeButtonSelected")
+
+  m.videoTitle = m.top.findNode("videoTitle")
+
+  m.markupgrid = m.top.findNode("videoMarkupGrid")
+  m.markupgrid.observeField("ItemSelected", "onItemSelected")
 
   m.markupgrid.observeField("ItemFocused", "OnItemFocused")
 
@@ -20,27 +25,54 @@ sub init()
   m.readMarkupGridTask.control = "RUN"
   m.markupgrid.setFocus(true)
   m.currentIndex = 0
+  m.focusedIndex = 0
   m.top.ObserveField("visible", "OnVisibleChange")
 
   m.videoPlayer = m.top.findNode("videoPlayer")
-  m.top.observeField("item", "playVideo")
   m.lastLoggedSecond = 0
-  m.backbtn.visible = false
+
 end sub
 
-function backbtn()
+sub OnItemFocused()
+  m.focusedIndex = m.markupgrid.itemFocused
+  ?"Focused Item Index: "; m.focusedIndex
+  m.currentIndex = m.focusedIndex
+
+  if m.currentIndex > -1
+
+    m.selectedItem = m.markupgrid.content.getChild(m.currentIndex)
+
+    ?"selectedItem >>>>>>>>>>>>>>>>" m.selectedItem
+    
+  end if
+
+  ' ?"image url>>>>>" m.selectedItem.imagePath[0]
+
+end sub
+
+
+function onHomeButtonSelected()
+  m.markupgrid.visible = true
+  m.backbtn.visible = false
+  m.homebtn.visible = false
+  m.videoPlayer.control = "stop"
+  m.videoPlayer.visible = false
+  m.markupgrid.setFocus(true)
+end function
+
+function onBackButtonSelected()
   m.markupgrid.visible = false
   m.backbtn.visible = false
+  m.homebtn.visible = false
   m.videoPlayer.setFocus(true)
 end function
 
 function playVideo()
-  if m.top.item <> invalid
+
     ?"Playing Video: "; m.top.item.videoPath
 
-
     m.video = createObject("roSGNode", "ContentNode")
-    m.video.url = m.top.item.videoPath
+    ' m.video.url =item.videoPath
     m.video.streamFormat = "hls"
 
     m.videoPlayer.content = m.video
@@ -53,9 +85,6 @@ function playVideo()
 
     errorMessage()
     m.videoPlayer.setFocus(true)
-  else
-    ?"Error: item is invalid."
-  end if
 end function
 
 
@@ -106,14 +135,6 @@ sub showmarkupgrid()
   end if
 end sub
 
-sub OnItemFocused()
-  focusedIndex = m.markupgrid.itemFocused
-  ?"Focused Item Index: "; focusedIndex
-  m.currentIndex = focusedIndex
-
-end sub
-
-
 function getMarkupGridItemCount() as integer
   if m.markupgrid.content <> invalid then
     return m.markupgrid.content.getChildCount()
@@ -123,8 +144,8 @@ function getMarkupGridItemCount() as integer
 
 end function
 
-function gotovideoscreen()
-  ?"gotovideoscreen called"
+function onItemSelected()
+  ?"onItemSelected called"
 
   focusedIndex = m.markupgrid.itemFocused
   ?"Focused Index: "; focusedIndex
@@ -152,7 +173,7 @@ function gotovideoscreen()
   ?"Video Path: "; selectedItem.videoPath
 
 
-  m.top.item = selectedItem
+  ' m.top.item = selectedItem
 
   m.videoPlayer.visible = true
   m.markupgrid.visible = false
@@ -187,25 +208,9 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
     if key = "back"
 
-      ' if m.ExitGroup.visible = false
-
-      '   m.ExitGroup.visible = true
-      '   m.cancelExitDialogeButton.setFocus(true)
-
-      '   handled = true
-
-      ' else if m.ExitGroup.visible = true
-
-      '   m.ExitGroup.visible = false
-
-      '   m.markupgrid.setFocus(true)
-
-      '   handled = true
-
-      ' else
       if m.videoPlayer.visible = true
-        ' m.videoPlayer.control = "stop"
         m.backbtn.visible = true
+        m.homebtn.visible = true
         m.markupgrid.visible = true
         m.markupgrid.setFocus(true)
 
@@ -231,7 +236,10 @@ function onKeyEvent(key as string, press as boolean) as boolean
         handled = true
 
       else if m.backbtn.hasFocus()
-        m.markupgrid.setFocus(true)
+
+        m.backbtn.setFocus(false)
+        m.homebtn.setFocus(true)
+        handled = true
 
       end if
     end if
@@ -242,14 +250,24 @@ function onKeyEvent(key as string, press as boolean) as boolean
 
         m.exitAppButton.setFocus(false)
         m.cancelExitDialogeButton.setFocus(true)
-
         handled = true
 
-      else if m.videoPlayer.visible = true and m.markupgrid.visible = true and m.currentIndex = 0
+      else if m.homebtn.hasFocus()
+
+        m.homebtn.setFocus(false)
+        m.backbtn.setFocus(true)
+        handled = true
+
+      end if
+    end if
+
+    if key = "up"
+
+      if m.videoPlayer.visible = true and m.markupgrid.visible = true and m.currentIndex < 5
 
         m.markupgrid.setFocus(false)
         m.backbtn.setFocus(true)
-       
+
         handled = true
 
 
@@ -263,6 +281,17 @@ function onKeyEvent(key as string, press as boolean) as boolean
         if (m.currentIndex < m.markupgrid.content.getChildCount()) and (m.currentIndex mod m.numberColumns >= m.markupgrid.content.getChildCount() mod m.numberColumns)
           m.markupgrid.jumptoItem = m.markupgrid.content.getChildCount() - 1
         end if
+
+      else if m.homebtn.hasFocus() or m.backbtn.hasFocus()
+
+        m.backbtn.setFocus(false)
+        m.homebtn.setFocus(false)
+        m.markupgrid.setFocus(true)
+
+
+        handled = true
+
+
       end if
     end if
 
@@ -270,34 +299,3 @@ function onKeyEvent(key as string, press as boolean) as boolean
   return handled
 
 end function
-
-' function onKeyEvent(key as string, press as boolean) as boolean
-'   handled = false
-
-'   if press
-'     if key = "down"
-'       if m.markupgrid.hasFocus()
-'         totalItems = getMarkupGridItemCount()
-'         numRows = m.markupgrid.numRows
-
-'         if numRows > 1
-'           numCols = totalItems / numRows
-'           secondLastRowStartIndex = (numRows - 2) * numCols
-'           lastRowStartIndex = (numRows - 1) * numCols
-
-'           secondLastRowItems = totalItems - secondLastRowStartIndex
-'           lastRowItems = totalItems - lastRowStartIndex
-
-'           if lastRowItems < secondLastRowItems
-'             if m.currentIndex >= secondLastRowStartIndex + (lastRowItems - 1)
-'               m.markupgrid.jumpToItem = totalItems - 1
-'               handled = true
-'             end if
-'           end if
-'         end if
-'       end if
-'     end if
-'   end if
-
-'   return handled
-' end function
