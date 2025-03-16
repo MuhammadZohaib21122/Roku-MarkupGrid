@@ -39,54 +39,78 @@ sub OnItemFocused()
   m.currentIndex = m.focusedIndex
 
   if m.currentIndex > -1
-
-    m.selectedItem = m.markupgrid.content.getChild(m.currentIndex)
-
-    ?"selectedItem >>>>>>>>>>>>>>>>" m.selectedItem
-    
+    setItemDetails(m.currentIndex)
   end if
-
-  ' ?"image url>>>>>" m.selectedItem.imagePath[0]
-
 end sub
 
-
-function onHomeButtonSelected()
-  m.markupgrid.visible = true
-  m.backbtn.visible = false
-  m.homebtn.visible = false
-  m.videoPlayer.control = "stop"
-  m.videoPlayer.visible = false
-  m.markupgrid.setFocus(true)
+function setItemDetails(index)
+  m.selectedItem = m.markupgrid.content.getChild(index)
+  ?"selectedItem >>>" m.selectedItem
+  m.background.visible = true
+  m.background.uri = m.selectedItem.bgImagePath
+  m.videoTitle.text = m.selectedItem.videoTitle
+  m.videoPath = m.selectedItem.videoPath
+  ?"Background Image URL: ", m.selectedItem.bgImagePath
+  ?"Title: ", m.selectedItem.videoTitle
+  ?"videoPath: ", m.videoPath
 end function
 
-function onBackButtonSelected()
-  m.markupgrid.visible = false
-  m.backbtn.visible = false
+function onItemSelected()
+  ?"onItemSelected called"
+  m.videoPlayer.visible = true
+  m.focusedIndex = m.markupgrid.itemFocused
+  ?"Focused Index: ", m.focusedIndex
+
+  setItemDetails(m.focusedIndex)
   m.homebtn.visible = false
-  m.videoPlayer.setFocus(true)
+  m.backbtn.visible = false
+  m.markupgrid.visible = false
+  m.background.visible = false
+  playVideo()
+  ?"Video screen opened."
 end function
 
 function playVideo()
+  ?"Playing Video: ", m.videoPath
 
-    ?"Playing Video: "; m.top.item.videoPath
+  if m.videoPlayer = invalid
+    m.videoPlayer = createObject("roSGNode", "Video")
+    m.top.appendChild(m.videoPlayer) 
+  end if
 
-    m.video = createObject("roSGNode", "ContentNode")
-    ' m.video.url =item.videoPath
-    m.video.streamFormat = "hls"
+  contentNode = createObject("roSGNode", "ContentNode")
+  contentNode.url = m.videoPath
+  contentNode.streamFormat = "hls"
 
-    m.videoPlayer.content = m.video
-    m.videoPlayer.control = "play"
+  m.videoPlayer.content = contentNode
+  m.videoPlayer.visible = true 
+  m.videoPlayer.control = "play"
 
+  m.videoPlayer.observeField("duration", "onVideoDuration")
+  m.videoPlayer.observeField("state", "onVideoStateChange")
+  m.videoPlayer.observeField("position", "onVideoPositionChange")
 
-    m.videoPlayer.observeField("duration", "onVideoDuration")
-    m.videoPlayer.observeField("state", "onVideoStateChange")
-    m.videoPlayer.observeField("position", "onVideoPositionChange")
-
-    errorMessage()
-    m.videoPlayer.setFocus(true)
+  errorMessage()
+  m.videoPlayer.setFocus(true)
 end function
 
+
+' function playVideo()
+'   ?"Playing Video: ", m.videoPath
+
+'   m.videoPlayer = createObject("roSGNode", "ContentNode")
+'   m.videoPlayer.url = "m.videoPath"
+'   m.videoPlayer.streamFormat = "hls"
+'   m.videoPlayer.content = m.videoPlayer
+'   m.videoPlayer.control = "play"
+
+'   m.videoPlayer.observeField("duration", "onVideoDuration")
+'   m.videoPlayer.observeField("state", "onVideoStateChange")
+'   m.videoPlayer.observeField("position", "onVideoPositionChange")
+
+'   errorMessage()
+'   m.videoPlayer.setFocus(true)
+' end function
 
 sub onVideoDuration(event as object)
 
@@ -144,41 +168,24 @@ function getMarkupGridItemCount() as integer
 
 end function
 
-function onItemSelected()
-  ?"onItemSelected called"
-
-  focusedIndex = m.markupgrid.itemFocused
-  ?"Focused Index: "; focusedIndex
-
-  if m.markupgrid.content = invalid
-    ?"Error: MarkupGrid content is invalid."
-
-  end if
-
-  if focusedIndex < 0 or focusedIndex >= m.markupgrid.content.getChildCount()
-    ?"Error: Focused index out of bounds."
-
-  end if
-
-  selectedItem = m.markupgrid.content.getChild(focusedIndex)
-
-  if selectedItem = invalid
-    ?"Error: Selected item is invalid."
-
-  end if
-
-  ?"Selected Item Data:"
-  ?"ID: "; selectedItem.mediaId
-  ?"Title: "; selectedItem.videoTitle
-  ?"Video Path: "; selectedItem.videoPath
-
-
-  ' m.top.item = selectedItem
-
-  m.videoPlayer.visible = true
-  m.markupgrid.visible = false
-  ?"Video screen opened."
+function onHomeButtonSelected()
+  m.background.visible = true
+  m.markupgrid.visible = true
+  m.backbtn.visible = false
+  m.homebtn.visible = false
+  m.videoPlayer.control = "stop"
+  m.videoPlayer.visible = false
+  m.markupgrid.setFocus(true)
 end function
+
+function onBackButtonSelected()
+  m.markupgrid.visible = false
+  m.backbtn.visible = false
+  m.homebtn.visible = false
+  m.videoPlayer.setFocus(true)
+end function
+
+
 
 sub OnVisibleChange()
 
