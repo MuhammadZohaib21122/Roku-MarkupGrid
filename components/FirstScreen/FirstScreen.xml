@@ -14,11 +14,8 @@
 
   <children>
 
-    <!-- <Poster  id = "background" width="1920" height="1080" uri="https://screensaverapps.b-cdn.net/VoD%20Apps%20-%20Collection/Fireplace%20Collection/BGImages/015.jpg">
-    </Poster> -->
-
-     <Video id="videoPlayer2" visible="true" height="1080"
-      width="1920" translation="[0,0]" />
+    <Poster  id = "background" width="1920" height="1080" uri="">
+    </Poster>
 
     <Label
       id="videoTitle"
