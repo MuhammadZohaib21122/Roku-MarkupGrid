@@ -1,6 +1,6 @@
 sub init()
   ' m.top.setFocus(true)
-  ' m.background = m.top.findNode("background")
+  m.background = m.top.findNode("background")
   m.ExitGroup = m.top.FindNode("ExitGroup")
   m.exitAppButton = m.top.findNode("exitButton")
   m.cancelExitDialogeButton = m.top.findNode("cancelExitButton")
@@ -31,8 +31,6 @@ sub init()
   m.videoPlayer = m.top.findNode("videoPlayer")
   m.lastLoggedSecond = 0
 
-  m.videoPlayer2 = m.top.findNode("videoPlayer2")
-
 end sub
 
 sub OnItemFocused()
@@ -48,8 +46,8 @@ end sub
 function setItemDetails(index)
   m.selectedItem = m.markupgrid.content.getChild(index)
   ?"selectedItem >>>" m.selectedItem
-  ' m.background.visible = true
-  ' m.background.uri = m.selectedItem.bgImagePath
+  m.background.visible = true
+  m.background.uri = m.selectedItem.bgImagePath
   m.videoTitle.text = m.selectedItem.videoTitle
   m.videoPath = m.selectedItem.videoPath
   ?"Background Image URL: ", m.selectedItem.bgImagePath
