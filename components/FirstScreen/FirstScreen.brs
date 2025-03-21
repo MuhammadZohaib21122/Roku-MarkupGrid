@@ -94,24 +94,6 @@ function playVideo()
   m.videoPlayer.setFocus(true)
 end function
 
-
-' function playVideo()
-'   ?"Playing Video: ", m.videoPath
-
-'   m.videoPlayer = createObject("roSGNode", "ContentNode")
-'   m.videoPlayer.url = "m.videoPath"
-'   m.videoPlayer.streamFormat = "hls"
-'   m.videoPlayer.content = m.videoPlayer
-'   m.videoPlayer.control = "play"
-
-'   m.videoPlayer.observeField("duration", "onVideoDuration")
-'   m.videoPlayer.observeField("state", "onVideoStateChange")
-'   m.videoPlayer.observeField("position", "onVideoPositionChange")
-
-'   errorMessage()
-'   m.videoPlayer.setFocus(true)
-' end function
-
 sub onVideoDuration(event as object)
 
   m.duration = event.getData()
