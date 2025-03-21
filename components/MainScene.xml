@@ -9,6 +9,7 @@
 
     <customization suspendhandler="customSuspend" />
     <customization resumehandler="customResume" />
+    
     <interface>
 
         <field id="inputArgs" type="assocarray" />
