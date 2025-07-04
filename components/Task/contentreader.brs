@@ -14,12 +14,12 @@ sub getcontent()
         "type": "video",
         "is4k": "false",
         "videoTitle": "S-1_E1",
-        "imagePath": "https://screensaverapps.b-cdn.net/VoD%20Apps%20-%20Collection/Fireplace%20Collection/Thumbnails/015.jpg",
-        "bgImagePath": "https://screensaverapps.b-cdn.net/VoD%20Apps%20-%20Collection/Fireplace%20Collection/BGImages/015.jpg",
+        "imagePath": "pkg:/images/20.jpg",
+        "bgImagePath": "pkg:/images/full-20.jpg",
         "audioPath": "https://screensaverapps.b-cdn.net/VoD%20Apps%20-%20Roku%20Tv/Fireplace%20Collection/Music/029.mp3",
-        "noMusicAudio": "https://screensaverapps.b-cdn.net/VoD%20Apps%20-%20Roku%20Tv/Fireplace%20Collection/Music/030.mp3",
-        "videoPath": "https://vz-25df0632-0a6.b-cdn.net/ca6e0b95-a2cf-4ff5-8f85-3f84fa7020d1/playlist.m3u8",
-        "noMusicVideo": "https://vz-25df0632-0a6.b-cdn.net/22cbe84a-02a1-40e6-904a-a43612e30ee4/playlist.m3u8"
+        
+        "videoPath": "pkg:/videos/s1/S1-E1.mp4",
+       
     },
     {
         "mediaId": "202",
