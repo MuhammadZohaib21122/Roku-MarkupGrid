@@ -28,14 +28,6 @@ end sub
 
 
 
-
-
-
-
-
-
-
-
 ' sub init()
 '   m.top.id = "markupgriditem"
 '   m.itemposter = m.top.findNode("itemPoster")
