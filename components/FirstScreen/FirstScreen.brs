@@ -14,7 +14,6 @@ sub init()
   m.markupgrid = m.top.findNode("videoMarkupGrid")
   m.markupgrid.observeField("ItemSelected", "onItemSelected")
   m.markupgrid.observeField("ItemFocused", "OnItemFocused")
-
   m.readMarkupGridTask = createObject("roSGNode", "ContentReader")
   m.readMarkupGridTask.observeField("content", "showmarkupgrid")
   m.readMarkupGridTask.control = "RUN"
