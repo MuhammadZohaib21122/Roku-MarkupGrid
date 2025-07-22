@@ -13,7 +13,6 @@ sub init()
   m.videoTitle = m.top.findNode("videoTitle")
   m.markupgrid = m.top.findNode("videoMarkupGrid")
   m.markupgrid.observeField("ItemSelected", "onItemSelected")
-
   m.markupgrid.observeField("ItemFocused", "OnItemFocused")
 
   m.readMarkupGridTask = createObject("roSGNode", "ContentReader")
