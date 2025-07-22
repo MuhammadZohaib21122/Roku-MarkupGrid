@@ -6,7 +6,6 @@ sub init()
   m.cancelExitDialogeButton = m.top.findNode("cancelExitButton")
   m.exitAppButton.observeField("buttonSelected", "exitButtonSelect")
   m.cancelExitDialogeButton.observeField("buttonSelected", "cancelExitDialoge")
-
   m.backbtn = m.top.findNode("backbtn")
   m.backbtn.observeField("buttonSelected", "onBackButtonSelected")
 
