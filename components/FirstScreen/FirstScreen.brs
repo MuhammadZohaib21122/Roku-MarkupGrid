@@ -10,7 +10,6 @@ sub init()
   m.backbtn.observeField("buttonSelected", "onBackButtonSelected")
   m.homebtn = m.top.findNode("homebtn")
   m.homebtn.observeField("buttonSelected", "onHomeButtonSelected")
-
   m.videoTitle = m.top.findNode("videoTitle")
 
   m.markupgrid = m.top.findNode("videoMarkupGrid")
