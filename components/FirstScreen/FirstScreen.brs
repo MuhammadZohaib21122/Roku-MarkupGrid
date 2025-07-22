@@ -21,7 +21,6 @@ sub init()
   m.currentIndex = 0
   m.focusedIndex = 0
   m.top.ObserveField("visible", "OnVisibleChange")
-
   m.videoPlayer = m.top.findNode("videoPlayer")
   m.lastLoggedSecond = 0
 
