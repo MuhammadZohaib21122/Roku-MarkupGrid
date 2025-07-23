@@ -14,20 +14,21 @@
 
   <children>
 
-    <Poster  id = "background" width="1920" height="1080" uri="">
+    <Poster id="background" width="1920" height="1080" uri="">
     </Poster>
 
     <Label
       id="videoTitle"
       height="44"
       width="0"
-      color = ""
+      color=""
       font="font:MediumBoldSystemFont"
       text=" Life at Beach "
       horizAlign="left"
       vertAlign="center"
       translation="[700,990]">
-      <Font role="font" uri="pkg:/components/Fonts/AcuminVariableConcept-SemiCondensedLight.ttf" size="70" />
+      <Font role="font" uri="pkg:/components/Fonts/AcuminVariableConcept-SemiCondensedLight.ttf"
+        size="70" />
     </Label>
 
     <Video id="videoPlayer" visible="false" height="1080"
