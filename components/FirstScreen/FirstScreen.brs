@@ -68,7 +68,7 @@ function playVideo()
 
   if m.videoPlayer = invalid
     m.videoPlayer = createObject("roSGNode", "Video")
-    m.top.appendChild(m.videoPlayer) 
+    m.top.appendChild(m.videoPlayer)
   end if
 
   contentNode = createObject("roSGNode", "ContentNode")
@@ -76,7 +76,7 @@ function playVideo()
   contentNode.streamFormat = "hls"
 
   m.videoPlayer.content = contentNode
-  m.videoPlayer.visible = true 
+  m.videoPlayer.visible = true
   m.videoPlayer.control = "play"
 
   m.videoPlayer.observeField("duration", "onVideoDuration")
