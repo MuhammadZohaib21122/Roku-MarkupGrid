@@ -24,7 +24,7 @@
       height="0"
       color="0xFK9900"
       font="font:MediumBoldSystemFont"
-      text="Roku now"
+      text="Roku now offers Nielsen audience measurement software on the Roku platform. You may choose to turn on these Nielsen audience measurement features in your channel."
       horizAlign="left"
       vertAlign="top">
       <Font role="font" uri="pkg:/components/Fonts/Inter-SemiBold.otf"
