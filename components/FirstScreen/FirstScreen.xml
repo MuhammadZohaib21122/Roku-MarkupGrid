@@ -17,17 +17,31 @@
     <Poster id="background" width="1920" height="1080" uri="">
     </Poster>
 
+    <ScrollingLabel
+      id="ScrollingLabel"
+      translation="[700,10]"
+      maxWidth="600"
+      height="0"
+      color="0xFK9900"
+      font="font:MediumBoldSystemFont"
+      text="Roku now"
+      horizAlign="left"
+      vertAlign="top">
+      <Font role="font" uri="pkg:/components/Fonts/Inter-SemiBold.otf"
+        size="70" />
+    </ScrollingLabel>
+
     <Label
       id="videoTitle"
       height="44"
       width="0"
-      color=""
+      color="0xFF6400"
       font="font:MediumBoldSystemFont"
       text=" Life at Beach "
       horizAlign="left"
       vertAlign="center"
       translation="[700,990]">
-      <Font role="font" uri="pkg:/components/Fonts/AcuminVariableConcept-SemiCondensedLight.ttf"
+      <Font role="font" uri="pkg:/components/Fonts/Inter-SemiBold.otf"
         size="70" />
     </Label>
 
